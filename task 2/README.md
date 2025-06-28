@@ -1,4 +1,4 @@
-# Publisher-Subscriber Middleware Architecture - Task 2
+# Publisher-Subscriber Middleware Architecture 
 
 This implementation provides a multi-threaded Publisher-Subscriber system where multiple clients can connect to a server simultaneously, with publishers sending messages that are broadcasted to all subscribers.
 
