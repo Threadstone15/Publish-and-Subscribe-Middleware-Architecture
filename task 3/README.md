@@ -15,9 +15,6 @@ This implementation extends the Publisher-Subscriber system to include **topic-b
 
 - `server.c` - Topic-aware multi-threaded server
 - `client.c` - Generic client application with topic support
-- `client1.c` - Client application (identical to client.c)
-- `client2.c` - Client application (identical to client.c)
-- `client3.c` - Client application (identical to client.c)
 - `compile.bat` - Batch script to compile all files
 
 ## Key Improvements from Task 2
@@ -41,9 +38,6 @@ This implementation extends the Publisher-Subscriber system to include **topic-b
 ```cmd
 gcc server.c -o server -lws2_32
 gcc client.c -o client -lws2_32
-gcc client1.c -o client1 -lws2_32
-gcc client2.c -o client2 -lws2_32
-gcc client3.c -o client3 -lws2_32
 ```
 
 ## Usage
@@ -66,17 +60,12 @@ server.exe 5000
 
 ```cmd
 client.exe 127.0.0.1 5000 PUBLISHER SPORTS
-client1.exe 127.0.0.1 5000 PUBLISHER NEWS
-client2.exe 127.0.0.1 5000 PUBLISHER WEATHER
 ```
 
 #### 3. Start Subscribers for Different Topics
 
 ```cmd
 client.exe 127.0.0.1 5000 SUBSCRIBER SPORTS
-client1.exe 127.0.0.1 5000 SUBSCRIBER NEWS
-client2.exe 127.0.0.1 5000 SUBSCRIBER WEATHER
-client3.exe 127.0.0.1 5000 SUBSCRIBER SPORTS
 ```
 
 ## System Behavior
@@ -110,17 +99,17 @@ client3.exe 127.0.0.1 5000 SUBSCRIBER SPORTS
 1. Start server: `server.exe 5000`
 2. Start publisher: `client.exe 127.0.0.1 5000 PUBLISHER SPORTS`
 3. Start subscribers:
-   - `client1.exe 127.0.0.1 5000 SUBSCRIBER SPORTS`
-   - `client2.exe 127.0.0.1 5000 SUBSCRIBER SPORTS`
+   - `client.exe 127.0.0.1 5000 SUBSCRIBER SPORTS`
+   - `client.exe 127.0.0.1 5000 SUBSCRIBER SPORTS`
 4. Send messages from publisher - both subscribers receive them
 
 ### Scenario 2: Multiple Topics Concurrently
 
 1. Start server: `server.exe 5000`
 2. Start SPORTS publisher: `client.exe 127.0.0.1 5000 PUBLISHER SPORTS`
-3. Start NEWS publisher: `client1.exe 127.0.0.1 5000 PUBLISHER NEWS`
-4. Start SPORTS subscriber: `client2.exe 127.0.0.1 5000 SUBSCRIBER SPORTS`
-5. Start NEWS subscriber: `client3.exe 127.0.0.1 5000 SUBSCRIBER NEWS`
+3. Start NEWS publisher: `client.exe 127.0.0.1 5000 PUBLISHER NEWS`
+4. Start SPORTS subscriber: `client.exe 127.0.0.1 5000 SUBSCRIBER SPORTS`
+5. Start NEWS subscriber: `client.exe 127.0.0.1 5000 SUBSCRIBER NEWS`
 6. Send messages from both publishers - each subscriber only receives messages from their topic
 
 ### Scenario 3: Mixed Topic Subscriptions

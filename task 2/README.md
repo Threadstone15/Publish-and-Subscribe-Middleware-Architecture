@@ -13,9 +13,7 @@ This implementation provides a multi-threaded Publisher-Subscriber system where 
 ## Files
 
 - `server.c` - Multi-threaded server that manages publishers and subscribers
-- `client1.c` - Client application (identical functionality to client2 and client3)
-- `client2.c` - Client application (identical functionality to client1 and client3)
-- `client3.c` - Client application (identical functionality to client1 and client2)
+- `client.c` - Client application
 - `compile.bat` - Batch script to compile all files
 
 ## Compilation
@@ -30,9 +28,7 @@ compile.bat
 
 ```cmd
 gcc server.c -o server -lws2_32
-gcc client1.c -o client1 -lws2_32
-gcc client2.c -o client2 -lws2_32
-gcc client3.c -o client3 -lws2_32
+gcc client.c -o client1 -lws2_32
 ```
 
 ## Usage
@@ -52,27 +48,25 @@ server.exe 5000
 ### 2. Start Publisher Clients
 
 ```cmd
-client1.exe <SERVER_IP> <PORT> PUBLISHER
+client.exe <SERVER_IP> <PORT> PUBLISHER
 ```
 
 Example:
 
 ```cmd
-client1.exe 127.0.0.1 5000 PUBLISHER
+client.exe 127.0.0.1 5000 PUBLISHER
 ```
 
 ### 3. Start Subscriber Clients
 
 ```cmd
-client2.exe <SERVER_IP> <PORT> SUBSCRIBER
-client3.exe <SERVER_IP> <PORT> SUBSCRIBER
+client.exe <SERVER_IP> <PORT> SUBSCRIBER
 ```
 
 Examples:
 
 ```cmd
-client2.exe 127.0.0.1 5000 SUBSCRIBER
-client3.exe 127.0.0.1 5000 SUBSCRIBER
+client.exe 127.0.0.1 5000 SUBSCRIBER
 ```
 
 ## System Behavior
@@ -99,9 +93,9 @@ client3.exe 127.0.0.1 5000 SUBSCRIBER
 
 1. Open 4 terminal windows
 2. Terminal 1: Start server (`server.exe 5000`)
-3. Terminal 2: Start publisher (`client1.exe 127.0.0.1 5000 PUBLISHER`)
-4. Terminal 3: Start subscriber (`client2.exe 127.0.0.1 5000 SUBSCRIBER`)
-5. Terminal 4: Start subscriber (`client3.exe 127.0.0.1 5000 SUBSCRIBER`)
+3. Terminal 2: Start publisher (`client.exe 127.0.0.1 5000 PUBLISHER`)
+4. Terminal 3: Start subscriber (`client.exe 127.0.0.1 5000 SUBSCRIBER`)
+5. Terminal 4: Start subscriber (`client.exe 127.0.0.1 5000 SUBSCRIBER`)
 6. Type messages in the publisher terminal
 7. Observe messages appearing in both subscriber terminals
 8. Type `terminate` in any client to disconnect
