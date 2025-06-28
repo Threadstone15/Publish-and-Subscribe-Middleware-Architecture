@@ -10,8 +10,19 @@
 #define BUFFER_SIZE 1024
 
 int main(int argc, char *argv[]) {
+#ifdef _WIN32
+    WSADATA wsa;
+    if (WSAStartup(MAKEWORD(2,2), &wsa) != 0) {
+        printf("Failed to initialize Winsock. Error Code : %d\n", WSAGetLastError());
+        return 1;
+    }
+#endif
+
     if (argc != 3) {
         fprintf(stderr, "Usage: %s <SERVER_IP> <PORT>\n", argv[0]);
+#ifdef _WIN32
+        WSACleanup();
+#endif
         return 1;
     }
 

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <winsock2.h>
+#include <ws2tcpip.h>
 #pragma comment(lib, "ws2_32.lib")
 
 #define BUFFER_SIZE 1024
@@ -45,7 +46,22 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    printf("Server listening on port %d...\n", port);
+    // Get and display server IP address
+    char hostname[256];
+    struct hostent *host_info;
+    
+    if (gethostname(hostname, sizeof(hostname)) == 0) {
+        host_info = gethostbyname(hostname);
+        if (host_info != NULL) {
+            struct in_addr addr;
+            addr.s_addr = *((unsigned long *)host_info->h_addr);
+            printf("Server started on IP: %s, Port: %d\n", inet_ntoa(addr), port);
+        } else {
+            printf("Server listening on port %d...\n", port);
+        }
+    } else {
+        printf("Server listening on port %d...\n", port);
+    }
 
     // 4. Accept connection
     if ((new_socket = accept(server_fd, (struct sockaddr *)&address, &addrlen)) < 0) {
@@ -58,7 +74,7 @@ int main(int argc, char *argv[]) {
     // 5. Receive messages
     while (1) {
         memset(buffer, 0, BUFFER_SIZE);
-        int bytes_read = read(new_socket, buffer, BUFFER_SIZE - 1);
+        int bytes_read = recv(new_socket, buffer, BUFFER_SIZE - 1, 0);
         if (bytes_read <= 0) break;
 
         buffer[bytes_read] = '\0';
