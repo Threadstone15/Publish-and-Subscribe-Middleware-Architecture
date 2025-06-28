@@ -1,4 +1,4 @@
-# Topic-Based Publisher-Subscriber Middleware Architecture - Task 3
+# Topic-Based Publisher-Subscriber Middleware Architecture
 
 This implementation extends the Publisher-Subscriber system to include **topic-based message filtering**, allowing publishers and subscribers to work with specific topics/subjects for more targeted message routing.
 
