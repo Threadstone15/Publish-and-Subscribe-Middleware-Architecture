@@ -1,5 +1,5 @@
 @echo off
-echo Compiling Publisher-Subscriber System...
+echo Compiling Topic-Based Publisher-Subscriber System...
 
 echo Compiling server...
 gcc server.c -o server -lws2_32
@@ -17,6 +17,8 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+
+
 echo.
 echo All files compiled successfully!
 echo.
@@ -24,10 +26,10 @@ echo Executables created:
 echo   - server.exe
 echo   - client.exe
 echo.
-echo To start the system:
+echo Example usage:
 echo   1. Start server: server.exe 5000
-echo   2. Start publisher: client.exe 127.0.0.1 5000 PUBLISHER
-echo   3. Start subscribers: client.exe 127.0.0.1 5000 SUBSCRIBER
-echo                        
+echo   2. Start publisher for SPORTS: client.exe 127.0.0.1 5000 PUBLISHER SPORTS
+echo.
+echo Now publishers will only send messages to subscribers of the same topic!
 echo.
 pause
