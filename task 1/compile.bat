@@ -2,7 +2,7 @@
 echo Compiling System...
 
 echo Compiling server...
-gcc server.c -o server -lws2_32
+gcc server.c -o server.exe -lws2_32
 if %errorlevel% neq 0 (
     echo Failed to compile server
     pause
@@ -10,7 +10,7 @@ if %errorlevel% neq 0 (
 )
 
 echo Compiling client...
-gcc client.c -o client -lws2_32
+gcc client.c -o client.exe -lws2_32
 if %errorlevel% neq 0 (
     echo Failed to compile client
     pause
@@ -25,8 +25,8 @@ echo   - server.exe
 echo   - client.exe
 echo.
 echo To start the system:
-echo   1. Start server: server.exe 5000
-echo   2. Start client: client.exe 127.0.0.1 5000 
+echo   1. Start server: .\server.exe 5000
+echo   2. Start client: .\client.exe 127.0.0.1 5000 
 echo                        
 echo.
 pause
